@@ -18,7 +18,7 @@ import java.util.List;
 
 @Endpoint
 @RequiredArgsConstructor
-public class CountryController {
+public class TicketSoapController {
     private static final String NAMESPACE_URI = "http://schedule.ru/";
     private final TicketService ticketService;
 
