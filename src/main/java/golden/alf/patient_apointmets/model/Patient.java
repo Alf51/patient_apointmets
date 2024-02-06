@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,4 +42,11 @@ public class Patient {
 
     @OneToMany(mappedBy = "patient")
     private List<Ticket> ticketList;
+
+    public void addTicket(Ticket ticket) {
+        if (ticketList == null) {
+            ticketList = new ArrayList<>();
+        }
+        ticketList.add(ticket);
+    }
 }

@@ -2,8 +2,10 @@ package golden.alf.patient_apointmets.services;
 
 
 import golden.alf.patient_apointmets.model.Doctor;
+import golden.alf.patient_apointmets.model.Patient;
 import golden.alf.patient_apointmets.model.Ticket;
 import golden.alf.patient_apointmets.repository.TicketRepository;
+import golden.alf.patient_apointmets.utils.exeptions.TicketErrorException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +19,20 @@ import java.util.List;
 public class TicketService {
     private final TicketRepository ticketRepository;
     private final DoctorService doctorService;
+    private final PatientService patientService;
 
+    @Transactional
+    public Ticket bookTicket(Long patientId, Long ticketId) {
+        Patient patient = patientService.getPatient(patientId);
+        Ticket ticket = getTicket(ticketId);
+        ticket.setPatient(patient);
+        return ticket;
+    }
+
+    @Transactional(readOnly = true)
+    public Ticket getTicket(Long ticketId) {
+        return ticketRepository.findById(ticketId).orElseThrow(() -> new TicketErrorException("талон не найден"));
+    }
 
     @Transactional
     public Ticket createTicket(LocalDateTime startTime, int durationInMinute, Long doctorId) {
