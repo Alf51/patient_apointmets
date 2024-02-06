@@ -1,7 +1,5 @@
-package golden.alf.patient_apointmets.controllers;
+package golden.alf.patient_apointmets.endpoints;
 
-
-import golden.alf.patient_apointmets.model.Ticket;
 import golden.alf.patient_apointmets.services.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -14,11 +12,10 @@ import ru.schedule.GetScheduleResponse;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 
 @Endpoint
 @RequiredArgsConstructor
-public class TicketSoapController {
+public class TicketEndpoint {
     private static final String NAMESPACE_URI = "http://schedule.ru/";
     private final TicketService ticketService;
 
@@ -31,9 +28,7 @@ public class TicketSoapController {
         int durationInMin = request.getDurationInMin();
         int numberOfTickets = request.getNumberOfTickets();
         Long doctorId = request.getDoctorId();
-        List<Ticket> ticketList = ticketService.createTickets(startDate, durationInMin, numberOfTickets, doctorId);
-
-        ticketList.forEach(System.out::println);
+        ticketService.createTickets(startDate, durationInMin, numberOfTickets, doctorId);
 
         GetScheduleResponse response = new GetScheduleResponse();
         response.setSchedule(true);
