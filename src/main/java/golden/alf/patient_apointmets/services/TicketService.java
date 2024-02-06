@@ -1,6 +1,7 @@
 package golden.alf.patient_apointmets.services;
 
 
+import golden.alf.patient_apointmets.dto.TicketDto;
 import golden.alf.patient_apointmets.model.Doctor;
 import golden.alf.patient_apointmets.model.Patient;
 import golden.alf.patient_apointmets.model.Ticket;
@@ -74,4 +75,8 @@ public class TicketService {
         return ticketRepository.saveAll(ticketList);
     }
 
+    public List<Ticket> getAllPatientTicket(Long patientId) {
+        Patient patient = patientService.getPatient(patientId);
+        return patient.getTicketList();
+    }
 }
