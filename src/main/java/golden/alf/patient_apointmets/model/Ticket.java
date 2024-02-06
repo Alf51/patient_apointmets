@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,7 +11,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +18,6 @@ public class Ticket {
     private Long id;
 
     @Column(name = "start_time")
-    @Temporal(TemporalType.DATE)
     private LocalDateTime startTime;
 
     @ManyToOne
@@ -35,6 +31,13 @@ public class Ticket {
     public Ticket(LocalDateTime startTime, Doctor doctor) {
         this.startTime = startTime;
         this.doctor = doctor;
-        this.patient = patient;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", startTime=" + startTime +
+                '}';
     }
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,4 +38,18 @@ public class Doctor {
 
     @OneToMany(mappedBy = "doctor")
     private List<Ticket> ticketList;
+
+    public void addTicket(Ticket ticket) {
+        if (ticketList == null) {
+            ticketList = new ArrayList<>();
+        }
+        ticketList.add(ticket);
+    }
+
+    public void addTicket(List<Ticket> tickets) {
+        if (ticketList == null) {
+            ticketList = new ArrayList<>();
+        }
+        ticketList.addAll(tickets);
+    }
 }

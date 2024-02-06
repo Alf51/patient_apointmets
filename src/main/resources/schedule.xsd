@@ -1,0 +1,25 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schedule.ru/"
+           targetNamespace="http://schedule.ru/" elementFormDefault="qualified">
+
+
+    <xs:element name="getSchedule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="startTime" type="xs:dateTime"/>
+                <xs:element name="durationInMin" type="xs:int"/>
+                <xs:element name="numberOfTickets" type="xs:int"/>
+                <xs:element name="doctorId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="getScheduleResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="schedule" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

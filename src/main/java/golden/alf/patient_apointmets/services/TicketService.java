@@ -1,39 +1,62 @@
 package golden.alf.patient_apointmets.services;
 
+
 import golden.alf.patient_apointmets.model.Doctor;
 import golden.alf.patient_apointmets.model.Ticket;
 import golden.alf.patient_apointmets.repository.TicketRepository;
-import golden.alf.patient_apointmets.utils.exeptions.TicketErrorException;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TicketService {
     private final TicketRepository ticketRepository;
-    private final  DoctorService doctorService;
+    private final DoctorService doctorService;
 
-    //TODO временная заглушка, реализовать согласно ТЗ
+
     @Transactional
-    public List<Ticket> createSchedule(Long doctorId, LocalDateTime startTime, LocalDateTime finishTime, int receptionTimeMinutes) {
-        Doctor doctor = doctorService.getDoctor(1L);
-        LocalDateTime mockTime = LocalDateTime.of(2024, Month.FEBRUARY, 5, 9, 0);
-        List<Ticket> ticketList = new ArrayList<>();
-        ticketList.add(new Ticket(mockTime, doctor));
-        ticketList.add(new Ticket(mockTime.plusHours(1), doctor));
-        ticketList.add(new Ticket(mockTime.plusHours(1), doctor));
+    public Ticket createTicket(LocalDateTime startTime, int durationInMinute, Long doctorId) {
+        Doctor doctor = doctorService.getDoctor(doctorId);
+
+        if (startTime.getHour() < 9) {
+            startTime = startTime.withHour(9);
+            startTime = startTime.withMinute(0);
+        }
+
+        Ticket ticket = new Ticket(startTime, doctor);
+        doctor.addTicket(ticket);
+        ticketRepository.save(ticket);
+        return ticket;
+    }
+
+    @Transactional
+    public List<Ticket> createTickets(LocalDateTime startTime, int durationInMinute, int numberOfTickets, Long doctorId) {
+        List<Ticket> ticketList = new ArrayList<>(numberOfTickets);
+        Doctor doctor = doctorService.getDoctor(doctorId);
+
+        if (startTime.getHour() < 9) {
+            startTime = startTime.withHour(9);
+            startTime = startTime.withMinute(0);
+        }
+
+        for (int i = 1; i <= numberOfTickets; i++) {
+            if (startTime.getHour() >= 18) {
+                startTime = startTime.plusDays(1);
+                startTime = startTime.withHour(9);
+                startTime = startTime.withMinute(0);
+            }
+            Ticket ticket = new Ticket(startTime, doctor);
+            startTime = startTime.plusMinutes(durationInMinute);
+            ticketList.add(ticket);
+        }
+        doctor.addTicket(ticketList);
 
         return ticketRepository.saveAll(ticketList);
     }
 
-    @Transactional(readOnly = true)
-    public Ticket getTicket(Long id) {
-        return ticketRepository.findById(id).orElseThrow(() -> new TicketErrorException("Талон не найден"));
-    }
 }
