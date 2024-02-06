@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "72f51145-9b82-430d-80cb-d3be1a06bc7b",
+		"name": "ticket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28499092"
+	},
+	"item": [
+		{
+			"name": "забронировать талон по id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"patientId\" : 2,\r\n    \"ticketId\" : 35\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tickets/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tickets",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "получение всех талонов пациента по id пациента",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tickets/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tickets",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
