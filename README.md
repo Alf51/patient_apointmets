@@ -3,7 +3,12 @@
 \scripts\postgreSQL\init.sql
 ```
 
-SOAP запрос расположен в корне проекта:
+запрос для SOAP сервиса расположен по пути:
 ```bash
-\request.xml
+\request\soap\request.xml
+```
+
+коллекция postman запросов для REST сервиса расположен по пути:
+```bash
+\request\request\rest\ticket.postman_collection.json
 ```
