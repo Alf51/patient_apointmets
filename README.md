@@ -28,8 +28,6 @@ mvn generate-sources
 ![image](/images/wdsl.png)
 
 
-java -jar .\patient_apointmets-0.0.1-SNAPSHOT.jar
-
 **4. Запустите приложение через консоль**
 В корене проекта выполните команду:
 
