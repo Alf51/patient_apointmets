@@ -19,6 +19,11 @@ git clone https://github.com/Alf51/patient_apointmets.git
 
 Пример в программе IDEA pom.xml -> right click -> Maven -> Generate Sources and Update Folders:
 
-![image](/images/wdsl.png))
+![image](/images/wdsl.png)
 
-images/wdsl.png
+
+**4. Коллекция запросов для тестирования приложения postman расположена по адресу**
+
+```bash
+\request\ticket.postman_collection.json
+```
