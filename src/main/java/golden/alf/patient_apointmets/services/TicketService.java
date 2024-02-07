@@ -39,13 +39,8 @@ public class TicketService {
 
     @Transactional
     public Ticket createTicket(LocalDateTime startTime, int durationInMinute, Long doctorId) {
+        startTime = getCurrentStartTime(startTime);
         Doctor doctor = doctorService.getDoctor(doctorId);
-
-        if (startTime.getHour() < 9) {
-            startTime = startTime.withHour(9);
-            startTime = startTime.withMinute(0);
-        }
-
         Ticket ticket = new Ticket(startTime, doctor);
         doctor.addTicket(ticket);
         ticketRepository.save(ticket);
@@ -54,19 +49,13 @@ public class TicketService {
 
     @Transactional
     public List<Ticket> createTickets(LocalDateTime startTime, int durationInMinute, int numberOfTickets, Long doctorId) {
-        List<Ticket> ticketList = new ArrayList<>(numberOfTickets);
+        startTime = getCurrentStartTime(startTime);
         Doctor doctor = doctorService.getDoctor(doctorId);
-
-        if (startTime.getHour() < 9) {
-            startTime = startTime.withHour(9);
-            startTime = startTime.withMinute(0);
-        }
+        List<Ticket> ticketList = new ArrayList<>(numberOfTickets);
 
         for (int i = 1; i <= numberOfTickets; i++) {
             if (startTime.getHour() >= 18) {
-                startTime = startTime.plusDays(1);
-                startTime = startTime.withHour(9);
-                startTime = startTime.withMinute(0);
+                startTime = startTime.plusDays(1).withHour(9).withMinute(0);
             }
             Ticket ticket = new Ticket(startTime, doctor);
             startTime = startTime.plusMinutes(durationInMinute);
@@ -88,5 +77,15 @@ public class TicketService {
                 .filter(ticket -> ticket.getPatient() == null)
                 .filter(ticket -> ticket.getStartTime().toLocalDate().isEqual(date))
                 .toList();
+    }
+
+    private LocalDateTime getCurrentStartTime(LocalDateTime startTime) {
+        if (startTime.isBefore(LocalDateTime.now())) {
+            throw new TicketErrorException(errorHandler.getErrorMessage("ticket.start-time-before"));
+        }
+        if (startTime.getHour() < 9) {
+            startTime = startTime.withHour(9).withMinute(0);
+        }
+        return startTime;
     }
 }
