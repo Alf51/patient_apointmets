@@ -5,5 +5,5 @@
 
 Скрип для создание записей в БД расположен по пути: 
 ```bash
-\src\main\resources\data.sql
+\src\main\resources\import.sql
 ```
