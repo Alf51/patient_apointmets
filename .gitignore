@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-src/main/resources/application.properties
+../../../../Naumen_HotelReservations/private/PrivateTemplate_HotelReservations/HotelReservations/src/main/resources/application.properties
 !**/src/main/resources/application.properties
 
 ### STS ###
