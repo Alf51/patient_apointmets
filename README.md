@@ -1,11 +1,6 @@
-запрос для SOAP сервиса расположен по пути:
+коллекция postman запросов для проверки рабты приложения расположена по пути:
 ```bash
-\request\soap\request.xml
-```
-
-коллекция postman запросов для REST сервиса расположен по пути:
-```bash
-\request\request\rest\ticket.postman_collection.json
+\request\ticket.postman_collection.json
 ```
 
 Скрип для создание записей в БД расположен по пути: 
