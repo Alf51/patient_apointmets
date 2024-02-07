@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,5 +79,13 @@ public class TicketService {
     public List<Ticket> getAllPatientTicket(Long patientId) {
         Patient patient = patientService.getPatient(patientId);
         return patient.getTicketList();
+    }
+
+    public List<Ticket> getFreeDoctorTicketsOnDate(Long doctorId, LocalDate date) {
+        Doctor doctor = doctorService.getDoctor(doctorId);
+        return doctor.getTicketList().stream()
+                .filter(ticket -> ticket.getPatient() == null)
+                .filter(ticket -> ticket.getStartTime().toLocalDate().isEqual(date))
+                .toList();
     }
 }

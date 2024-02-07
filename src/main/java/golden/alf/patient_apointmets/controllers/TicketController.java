@@ -2,6 +2,7 @@ package golden.alf.patient_apointmets.controllers;
 
 import golden.alf.patient_apointmets.dto.PatientTicketDto;
 import golden.alf.patient_apointmets.dto.TicketDto;
+import golden.alf.patient_apointmets.dto.TicketOnDate;
 import golden.alf.patient_apointmets.model.Ticket;
 import golden.alf.patient_apointmets.services.TicketService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,12 @@ public class TicketController {
     @GetMapping("/{patientId}")
     public List<TicketDto> getAllPatientTicket(@PathVariable Long patientId) {
         List<Ticket> ticketList = ticketService.getAllPatientTicket(patientId);
+        return convertTicketListToTicketDtoList(ticketList);
+    }
+
+    @GetMapping("/free/{doctorId}")
+    public List<TicketDto> getFreeTicketsCurrentDoctor(@PathVariable Long doctorId, @RequestBody TicketOnDate ticket) {
+        List<Ticket> ticketList = ticketService.getFreeDoctorTicketsOnDate(doctorId, ticket.getDate());
         return convertTicketListToTicketDtoList(ticketList);
     }
 
