@@ -54,6 +54,39 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "получение свободных талонов врача на указанную дату",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\" : \"2024-02-06\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tickets/free/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tickets",
+						"free",
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
