@@ -27,7 +27,3 @@ git clone https://github.com/Alf51/patient_apointmets.git
 ```bash
 \request\ticket.postman_collection.json
 ```
-<<<<<<< HEAD
-
-=======
->>>>>>> d9a2e5cec198cc285abaf5674faf4bcfcf82e35d
