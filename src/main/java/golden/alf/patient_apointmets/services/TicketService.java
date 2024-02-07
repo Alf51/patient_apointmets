@@ -1,11 +1,10 @@
 package golden.alf.patient_apointmets.services;
 
-
-import golden.alf.patient_apointmets.dto.TicketDto;
 import golden.alf.patient_apointmets.model.Doctor;
 import golden.alf.patient_apointmets.model.Patient;
 import golden.alf.patient_apointmets.model.Ticket;
 import golden.alf.patient_apointmets.repository.TicketRepository;
+import golden.alf.patient_apointmets.utils.erorsHandler.ErrorHandler;
 import golden.alf.patient_apointmets.utils.exeptions.TicketErrorException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +21,7 @@ public class TicketService {
     private final TicketRepository ticketRepository;
     private final DoctorService doctorService;
     private final PatientService patientService;
+    private final ErrorHandler errorHandler;
 
     @Transactional
     public Ticket bookTicket(Long patientId, Long ticketId) {
@@ -33,7 +33,8 @@ public class TicketService {
 
     @Transactional(readOnly = true)
     public Ticket getTicket(Long ticketId) {
-        return ticketRepository.findById(ticketId).orElseThrow(() -> new TicketErrorException("талон не найден"));
+        return ticketRepository.findById(ticketId).orElseThrow(() -> new TicketErrorException(errorHandler
+                .getErrorMessage("ticket.not-found")));
     }
 
     @Transactional
