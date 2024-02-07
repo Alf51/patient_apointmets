@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "72f51145-9b82-430d-80cb-d3be1a06bc7b",
+		"_postman_id": "79d49335-9c8e-4812-a1e2-bb4cf9568764",
 		"name": "ticket",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "28499092"
@@ -65,7 +65,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"date\" : \"2024-02-06\"\r\n}",
+					"raw": "{\r\n    \"date\" : \"2024-02-10\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -83,6 +83,41 @@
 						"tickets",
 						"free",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "soap создание расписания",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:gs=\"http://schedule.ru/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <gs:getSchedule>\r\n         <gs:startTime>2024-02-08T22:36:17</gs:startTime>\r\n         <gs:durationInMin>60</gs:durationInMin>\r\n         <gs:numberOfTickets>10</gs:numberOfTickets>\r\n         <gs:doctorId>1</gs:doctorId>\r\n      </gs:getSchedule>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ws/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ws",
+						""
 					]
 				}
 			},
