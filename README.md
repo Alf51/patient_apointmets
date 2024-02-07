@@ -19,4 +19,6 @@ git clone https://github.com/Alf51/patient_apointmets.git
 
 Пример в программе IDEA pom.xml -> right click -> Maven -> Generate Sources and Update Folders:
 
-!![image]([url](https://raw.githubusercontent.com/Alf51/patient_apointmets/master/images/wdsl.png))
+![image](/images/wdsl.png))
+
+images/wdsl.png
