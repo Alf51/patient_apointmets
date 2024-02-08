@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-patients1
+      author: Vasily
+      changes:
+        - insert:
+            tableName: patients
+            columns:
+              - column:
+                  name: uuid
+                  value: "6a267256-ec13-468f-b8d9-a32f87dd483d"
+              - column:
+                  name: first_name
+                  value: "Иванов"
+              - column:
+                  name: last_name
+                  value: "Иван"
+              - column:
+                  name: middle_name
+                  value: "Иванович"
+              - column:
+                  name: birth_date
+                  value: "1993.09.15"
+        - insert:
+            tableName: patients
+            columns:
+              - column:
+                  name: uuid
+                  value: "3de1864b-78f7-4767-a946-7c8a1c30eb9b"
+              - column:
+                  name: first_name
+                  value: "Самолётов"
+              - column:
+                  name: last_name
+                  value: "Степан"
+              - column:
+                  name: middle_name
+                  value: "Алексеевич"
+              - column:
+                  name: birth_date
+                  value: "1998.03.15"

@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-doctors1
+      author: Vasily
+      changes:
+        - insert:
+            tableName: doctors
+            columns:
+              - column:
+                  name: uuid
+                  value: "cdcc5ccd-9ca1-4897-95c6-9dc0766e04e4"
+              - column:
+                  name: first_name
+                  value: "Тырса"
+              - column:
+                  name: last_name
+                  value: "Николай"
+              - column:
+                  name: middle_name
+                  value: "Анатольевич"
+        - insert:
+            tableName: doctors
+            columns:
+              - column:
+                  name: uuid
+                  value: "150d9b38-2b56-4e71-bf38-340e21885ffe"
+              - column:
+                  name: first_name
+                  value: "Магомед"
+              - column:
+                  name: last_name
+                  value: "Пётр"
+              - column:
+                  name: middle_name
+                  value: "Иванович"

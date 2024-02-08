@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/create-doctor-table.yaml
+  - include:
+      file: db/changelog/changeset/create-patient-table.yaml
+  - include:
+      file: db/changelog/changeset/create-tickets-table.yaml
+  - include:
+      file: db/changelog/changeset/insert-doctors-data.yaml
+  - include:
+      file: db/changelog/changeset/insert-patients-data.yaml
